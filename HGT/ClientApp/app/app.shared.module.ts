@@ -7,12 +7,16 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './components/app/app.component';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { HomeComponent } from './components/home/home.component';
+import { SmallVideoComponent } from './components/smallVideo/smallVideo.component';
+
+
 
 @NgModule({
     declarations: [
         AppComponent,
         NavMenuComponent,
-        HomeComponent
+        HomeComponent,
+        SmallVideoComponent
     ],
     imports: [
         CommonModule,
