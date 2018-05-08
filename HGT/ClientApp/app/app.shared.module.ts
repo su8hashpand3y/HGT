@@ -8,6 +8,8 @@ import { AppComponent } from './components/app/app.component';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { HomeComponent } from './components/home/home.component';
 import { SmallVideoComponent } from './components/smallVideo/smallVideo.component';
+import { SignUpComponent } from './components/signUp/signUp';
+import { UploadComponent } from './components/upload/Upload';
 
 
 
@@ -16,7 +18,9 @@ import { SmallVideoComponent } from './components/smallVideo/smallVideo.componen
         AppComponent,
         NavMenuComponent,
         HomeComponent,
-        SmallVideoComponent
+        SmallVideoComponent,
+        SignUpComponent,
+        UploadComponent
     ],
     imports: [
         CommonModule,
@@ -25,6 +29,8 @@ import { SmallVideoComponent } from './components/smallVideo/smallVideo.componen
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
+            { path: 'upload', component: UploadComponent },
+            { path: 'signup', component: SignUpComponent },
             { path: '**', redirectTo: 'home' }
         ])
     ]
