@@ -1,0 +1,9 @@
+﻿.main-video {
+    display: block;
+    width: 640px;
+    height: 360px;
+}
+
+.card{
+    margin-top:10px;
+}
