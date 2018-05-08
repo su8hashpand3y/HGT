@@ -1,7 +1,8 @@
 ﻿.main-video {
     display: block;
-    width: 640px;
-    height: 360px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .card{
