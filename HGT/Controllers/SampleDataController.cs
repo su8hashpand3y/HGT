@@ -80,8 +80,8 @@ namespace HGT.Controllers
                         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
                         var token = new JwtSecurityToken(
-                            issuer: "yourdomain.com",
-                            audience: "yourdomain.com",
+                            issuer: Configuration["ValidIssuer"],
+                            audience: Configuration["ValidAudience"],
                             claims: claims,
                             expires: DateTime.Now.AddMinutes(30),
                             signingCredentials: creds);
