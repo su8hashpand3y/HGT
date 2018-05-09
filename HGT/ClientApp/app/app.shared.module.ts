@@ -27,7 +27,7 @@ import { UploadComponent } from './components/upload/Upload';
         HttpModule,
         FormsModule,
         RouterModule.forRoot([
-            { path: '', redirectTo: 'home', pathMatch: 'full' },
+            { path: '', redirectTo: 'signup', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
             { path: 'upload', component: UploadComponent },
             { path: 'signup', component: SignUpComponent },
