@@ -2,11 +2,23 @@
 
 namespace HGT.Controllers
 {
+
+    public enum Gender
+    {
+        Male,
+        Female,
+        Other
+    }
+
+    public enum District
+    {
+
+    }
+
     public class RegisterViewModel
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
         public string Email { get; set; }
 
         [Required]
@@ -15,9 +27,22 @@ namespace HGT.Controllers
         [Display(Name = "Password")]
         public string Password { get; set; }
 
-        [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-        public string ConfirmPassword { get; set; }
+        [Required]
+        public string FirstName { get; set; }
+        [Required]
+        public string LastName { get; set; }
+        [Required]
+        public string CapthaName { get; set; }
+        [Required]
+        public string CapthaAnswer { get; set; }
+
+        [Required]
+        public Gender Gender { get; set; }
+
+        [Required]
+        public District District { get; set; }
+
+        [Required]
+        public string Town { get; set; }
     }
 }
