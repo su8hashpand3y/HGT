@@ -16,9 +16,17 @@ export class SignUpComponent {
     town: string;
     districts: string[] = ["Shimla", "Other"]
     Sdistrict: string
+    gender: string
+
+
+    setGender(gender: string) {
+        this.gender = gender;
+    }
+
 
     register() {
         console.log("Registering" + this.firstName);
         console.log("Registering" + this.Sdistrict);
+        console.log("Registering" + this.gender);
     }
 }

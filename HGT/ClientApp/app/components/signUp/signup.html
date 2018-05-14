@@ -33,7 +33,7 @@
                 <label for="gender">Gender</label>
                 <div class="input-group-prepend">
                     <div class="input-group-text">
-                        <input type="radio" name="gender" value="male" checked> Male<br>
+                        <input type="radio" name="gender" value="male" (click)="setGender(male)"> Male<br>
                         <input type="radio" name="gender" value="female"> Female<br>
                         <input type="radio" name="gender" value="other"> Other
                     </div>
@@ -50,8 +50,8 @@
                 <input type="text"  [(ngModel)]="town" class="form-control" id="town" name="town"  placeholder="Your Town">
             </div>
 
-            <select>
-                <option [(selected)] ="Sdistrict" *ngFor="let district of districts">{{district}}</option>
+            <select [(ngModel)] ="Sdistrict" name="Sdistrict">
+                <option  *ngFor="let district of districts"  [ngValue]="district">{{district}}</option>
             </select>
 
             <div class="form-group">
