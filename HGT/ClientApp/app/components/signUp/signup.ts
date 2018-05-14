@@ -12,8 +12,13 @@ export class SignUpComponent {
     capthaName: string;
     capthaAnswer: string;
     password: string;
+    district: string;
+    town: string;
+    districts: string[] = ["Shimla", "Other"]
+    Sdistrict: string
 
     register() {
-
+        console.log("Registering" + this.firstName);
+        console.log("Registering" + this.Sdistrict);
     }
 }
