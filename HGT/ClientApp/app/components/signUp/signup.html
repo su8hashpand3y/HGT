@@ -33,9 +33,9 @@
                 <label for="gender">Gender</label>
                 <div class="input-group-prepend">
                     <div class="input-group-text">
-                        <input type="radio" name="gender" value="male" (click)="setGender(male)"> Male<br>
-                        <input type="radio" name="gender" value="female"> Female<br>
-                        <input type="radio" name="gender" value="other"> Other
+                        <input type="radio" name="gender" value="male"    [(ngModel)]="gender" > Male
+                        <input type="radio" name="gender" value="female"  [(ngModel)]="gender" > Female
+                        <input type="radio" name="gender" value="other"   [(ngModel)]="gender" > Other
                     </div>
                 </div>
             </div>
