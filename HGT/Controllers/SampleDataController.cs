@@ -36,8 +36,8 @@ namespace HGT.Controllers
         // [HttpPost]
         [AllowAnonymous]
         // [ValidateAntiForgeryToken]
-        [HttpGet("[action]")]
-        public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
+        [HttpPost("[action]")]
+        public async Task<IActionResult> Register([FromBody]RegisterViewModel model, string returnUrl = null)
         {
 
             ViewData["ReturnUrl"] = returnUrl;

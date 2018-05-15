@@ -3,7 +3,7 @@
         <div margin-bottom:10px>
             <h3>Hey you Wanna SignUp ? .Enter your Details below</h3>
         </div>
-        <form>
+        <form  (ngSubmit)="register()" >
 
             <div class="form-group">
                 <label for="firstName">First Name</label>
@@ -18,7 +18,7 @@
 
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" [(ngModel)]="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email" required>
+                <input type="email" [(ngModel)]="email" class="form-control" id="email" name="email" placeholder="Enter email" required>
                 <small id="emailHelp" class="form-text text-muted">This will be your userId.</small>
             </div>
 
@@ -29,12 +29,12 @@
 
 
 
-            <div class="input-group">
+            <div class="form-group">
                 <label for="gender">Gender</label>
                 <div class="input-group-prepend">
                     <div class="input-group-text">
-                        <input type="radio" name="gender" value="male"    [(ngModel)]="gender" > Male
-                        <input type="radio" name="gender" value="female"  [(ngModel)]="gender" > Female
+                        <input type="radio" name="gender" value="male"  required  [(ngModel)]="gender"  > Male
+                        <input type="radio" name="gender" value="female"  [(ngModel)]="gender" checked > Female
                         <input type="radio" name="gender" value="other"   [(ngModel)]="gender" > Other
                     </div>
                 </div>
@@ -42,24 +42,24 @@
 
             <div class="form-group">
                 <label for="district">District</label>
-                <input type="text" [(ngModel)]="district" class="form-control" id="district" name="district" placeholder="Your District">
+                <select [(ngModel)]="selectedDistrict" name="selectedDistrict" required>
+                    <option *ngFor="let district of districts" [ngValue]="district">{{district}}</option>
+                </select>
             </div>
 
             <div class="form-group">
                 <label for="town">Town</label>
-                <input type="text"  [(ngModel)]="town" class="form-control" id="town" name="town"  placeholder="Your Town">
+                <input type="text"  [(ngModel)]="town" class="form-control" id="town" name="town"  placeholder="Your Town" required>
             </div>
 
-            <select [(ngModel)] ="Sdistrict" name="Sdistrict">
-                <option  *ngFor="let district of districts"  [ngValue]="district">{{district}}</option>
-            </select>
+           
 
             <div class="form-group">
                 <label for="captha">Enter text 'Captha' in below text box</label>
-                <input type="text" class="form-control" id="captha" placeholder="Captha" required>
+                <input type="text" class="form-control" id="captha" placeholder="Captha"  [(ngModel)]="capthaAnswer" name="capthaAnswer"  required>
             </div>
 
-            <button type="submit" class="btn btn-primary" (click)="register()" >Sign Me Up</button>
+            <button type="submit" class="btn btn-primary"  >Sign Me Up</button>
         </form>
         <div margin-top:10px>
             <label>We dont share your user info and this is a talent platform and all videos you upload are public.</label>
