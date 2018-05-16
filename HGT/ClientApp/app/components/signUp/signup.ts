@@ -36,7 +36,7 @@ export class SignUpComponent {
             capthaName: this.capthaName || "",
             capthaAnswer: this.capthaAnswer || "",
             password: this.password || "",
-            // district: this.selectedDistrict || "",
+            district: this.selectedDistrict || "",
             town: this.town || "",
             gender: this.gender || "",
         };

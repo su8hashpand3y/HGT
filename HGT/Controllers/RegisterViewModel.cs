@@ -2,19 +2,6 @@
 
 namespace HGT.Controllers
 {
-
-    public enum Gender
-    {
-        Male,
-        Female,
-        Other
-    }
-
-    public enum District
-    {
-
-    }
-
     public class RegisterViewModel
     {
         [Required]
@@ -37,10 +24,10 @@ namespace HGT.Controllers
         public string CapthaAnswer { get; set; }
 
         [Required]
-        public Gender Gender { get; set; }
+        public string Gender { get; set; }
 
         [Required]
-        public District District { get; set; }
+        public string District { get; set; }
 
         [Required]
         public string Town { get; set; }
