@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace HGT
+namespace HGT.Models
 {
     public class UserDbContext : IdentityDbContext<HGTUser>
     {

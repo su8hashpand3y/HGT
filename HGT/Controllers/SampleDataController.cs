@@ -10,6 +10,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using HashLibrary;
+using HGT.ViewModels;
+using HGT.Models;
 
 namespace HGT.Controllers
 {
@@ -26,8 +29,13 @@ namespace HGT.Controllers
 
         [Authorize]
         [HttpGet("[action]")]
-        public string GetSecret()
+        public string GetSecret(string somePassword)
         {
+            var hasher = new Hasher();
+            string hashedPassword = string.Empty;
+            // var v = new HashedPassword(
+            // hasher.Check(somePassword, hashedPassword))
+
             return "SuperSecret";
         }
 
@@ -39,6 +47,12 @@ namespace HGT.Controllers
         [HttpPost("[action]")]
         public async Task<IActionResult> Register([FromBody]RegisterViewModel model, string returnUrl = null)
         {
+            var hasher = new Hasher();
+            var hashedPassword = hasher.HashPassword(model.Password);
+            
+
+
+
 
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)

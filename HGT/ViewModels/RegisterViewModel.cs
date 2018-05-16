@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace HGT.Controllers
+namespace HGT.ViewModels
 {
     public class RegisterViewModel
     {
