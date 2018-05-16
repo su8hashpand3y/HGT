@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ViewContainerRef} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -10,6 +10,10 @@ import { HomeComponent } from './components/home/home.component';
 import { SmallVideoComponent } from './components/smallVideo/smallVideo.component';
 import { SignUpComponent } from './components/signUp/signUp';
 import { UploadComponent } from './components/upload/Upload';
+import { ToastService } from './ToastService';
+
+import { ToastModule } from 'ng2-toastr/ng2-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -21,6 +25,7 @@ import { UploadComponent } from './components/upload/Upload';
         SmallVideoComponent,
         SignUpComponent,
         UploadComponent
+        
     ],
     imports: [
         CommonModule,
@@ -32,8 +37,15 @@ import { UploadComponent } from './components/upload/Upload';
             { path: 'upload', component: UploadComponent },
             { path: 'signup', component: SignUpComponent },
             { path: '**', redirectTo: 'home' }
-        ])
-    ]
+        ]),
+        BrowserAnimationsModule,
+        ToastModule.forRoot()
+    ],
+    providers: [ToastService]
 })
 export class AppModuleShared {
+
 }
+
+
+

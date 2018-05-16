@@ -1,5 +1,7 @@
-﻿import { Component, Input } from '@angular/core';
+﻿import { Component, Input, ViewContainerRef } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { ToastService } from '../../ToastService';
 
 
 @Component({
@@ -20,11 +22,16 @@ export class SignUpComponent {
     selectedDistrict: string
     gender: string
 
-    constructor(private http: Http) { }
+    constructor(private http: Http, public toastr: ToastsManager, vcr: ViewContainerRef,private toast: ToastService) { //this.toastr.setRootViewContainerRef(vcr);
+    }
+    
+    
 
     register() {
-
         console.log("registering");
+
+        let localData = localStorage.getItem("returndata");
+        console.log(`local data is ${localData}`);
 
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
@@ -43,6 +50,13 @@ export class SignUpComponent {
 
         console.log(user);
 
-        this.http.post("/api/SampleData/Register", user,options).subscribe(x => console.log(x));
+        this.http.post("/api/SampleData/Register", user, options).subscribe((data: any) => {
+            localStorage.setItem('returndata', data._body);
+            this.toast.success(data._body);
+        }, err => {
+            this.toast.error(err._body);
+            console.log(err);
+        });
+        
     }
 }

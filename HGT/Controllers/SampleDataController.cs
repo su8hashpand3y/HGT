@@ -20,23 +20,20 @@ namespace HGT.Controllers
     public class SampleDataController : Controller
     {
         private IConfiguration Configuration { get; }
-        public SampleDataController(IConfiguration configuration)
+        private IServiceProvider services { get; }
+
+        public SampleDataController(IConfiguration configuration, IServiceProvider services)
         {
             Configuration = configuration;
+            this.services = services;
         }
-
 
 
         [Authorize]
         [HttpGet("[action]")]
-        public string GetSecret(string somePassword)
+        public async Task<IActionResult> GetSecret()
         {
-            var hasher = new Hasher();
-            string hashedPassword = string.Empty;
-            // var v = new HashedPassword(
-            // hasher.Check(somePassword, hashedPassword))
-
-            return "SuperSecret";
+            return Ok(new { Message = "you Are successfully Logged in" });
         }
 
 
@@ -47,47 +44,89 @@ namespace HGT.Controllers
         [HttpPost("[action]")]
         public async Task<IActionResult> Register([FromBody]RegisterViewModel model, string returnUrl = null)
         {
-            var hasher = new Hasher();
-            var hashedPassword = hasher.HashPassword(model.Password);
-            
 
-
-
-
-            ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new HGTUser { UserName = model.Email, Email = model.Email };
-                bool succeeded = false;
-                // Save User To Database 
-                if (succeeded)
+                try
                 {
-                    return RedirectToLocal(returnUrl);
+                    var context = this.services.GetService(typeof(UserDbContext)) as UserDbContext;
+                    if (context.HGTUsers.FirstOrDefault(x => x.Email == model.Email) == null)
+                    {
+                        var hasher = new Hasher();
+                        var hashedPassword = hasher.HashPassword(model.Password);
+                        HGTUser newUser = new HGTUser
+                        {
+                            FirstName = model.FirstName,
+                            LastName = model.LastName,
+                            Email = model.Email,
+                            PasswordHash = hashedPassword.Hash,
+                            Salt = hashedPassword.Salt,
+                            Gender = model.Gender,
+                            District = model.District,
+                            Town = model.Town,
+                            Age = model.Age
+                        };
+                        context.HGTUsers.Add(newUser);
+                        context.SaveChanges();
+                        // Send the verification Mail
+                        return Ok("User Registration successful :) \n Please Verify your email we have sent you a link." );
+                    }
+                }
+                catch 
+                {
+                    return BadRequest("Oops, Something went wrong :(");
                 }
             }
+            else
+            {
+                var modelErrors = new StringBuilder();
+                foreach (var modelState in ModelState.Values)
+                {
+                    foreach (var modelError in modelState.Errors)
+                    {
+                        modelErrors.AppendLine(modelError.ErrorMessage);
+                    }
+                }
 
-            // If we got this far, something failed, redisplay form
-            return View(model);
+                return BadRequest(modelErrors.ToString());
+            }
+
+            return BadRequest("Oops, Somthing went wrong  :(");
         }
 
 
         // [HttpPost]
         [AllowAnonymous]
         // [ValidateAntiForgeryToken]
-        [HttpGet("[action]")]
-        public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
+        [HttpPost("[action]")]
+        public async Task<IActionResult> Login([FromBody]LoginViewModel user, string returnUrl = null)
         {
 
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
                 bool succeeded = false;
+                var context = this.services.GetService(typeof(UserDbContext)) as UserDbContext;
+                var foundUser = context.HGTUsers.FirstOrDefault(x => x.Email == user.Email);
+                if (foundUser == null)
+                    return Ok(new { Message = "User not found" });
+
+                if (!foundUser.IsVerified)
+                {
+                    // Send The verification Mail
+                }
+
+                var hash = new HashedPassword(foundUser.PasswordHash, foundUser.Salt);
+                var hasher = new Hasher();
+                if (hasher.Check(user.Password, hash))
+                    succeeded = true;
+                else return Ok(new { Message = "Wrong Password" });
                 // Check whether Such user Exists in Database or not 
                 if (succeeded)
                 {
                         var claims = new[]
                         {
-                              new Claim(ClaimTypes.Name, model.Email)
+                              new Claim(ClaimTypes.Name, user.Email)
                              };
 
                         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["SecurityKey"]));

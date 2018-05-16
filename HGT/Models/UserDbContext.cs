@@ -6,5 +6,7 @@ namespace HGT.Models
     public class UserDbContext : IdentityDbContext<HGTUser>
     {
         public UserDbContext(DbContextOptions<UserDbContext> options) : base(options) { }
+
+        public DbSet<HGTUser> HGTUsers { get; set; }
     }
 }
