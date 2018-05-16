@@ -9,6 +9,7 @@ import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { HomeComponent } from './components/home/home.component';
 import { SmallVideoComponent } from './components/smallVideo/smallVideo.component';
 import { SignUpComponent } from './components/signUp/signUp';
+import { SigninComponent } from './components/signin/signin';
 import { UploadComponent } from './components/upload/Upload';
 import { ToastService } from './ToastService';
 
@@ -24,6 +25,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         HomeComponent,
         SmallVideoComponent,
         SignUpComponent,
+        SigninComponent,
         UploadComponent
         
     ],

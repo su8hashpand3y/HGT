@@ -1,6 +1,5 @@
-﻿import { Component, Input, ViewContainerRef } from '@angular/core';
+﻿import { Component, Input } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { ToastService } from '../../ToastService';
 
 
@@ -22,8 +21,7 @@ export class SignUpComponent {
     selectedDistrict: string
     gender: string
 
-    constructor(private http: Http, public toastr: ToastsManager, vcr: ViewContainerRef,private toast: ToastService) { //this.toastr.setRootViewContainerRef(vcr);
-    }
+    constructor(private http: Http, private toast: ToastService) { }
     
     
 
