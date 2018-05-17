@@ -33,7 +33,7 @@ namespace HGT.Controllers
 
 
         [HttpPost("[action]")]
-        public async Task<IActionResult> Upload(IFormFile file)
+        public async Task<IActionResult> Upload(IFormFile file, UploadInfoViewModel fileInfo)
         {
             long size = file.Length;
             var filePath = Environment.CurrentDirectory + "new.mp4";
@@ -43,7 +43,7 @@ namespace HGT.Controllers
             }
 
             // var converter = new FFMpegConverter();
-            converter.ConvertMedia(filePath, filePath + "new", "mp4");
+            // converter.ConvertMedia(filePath, filePath + "new", "mp4");
             return Ok(new { Message = "you Are successfully Logged in" });
         }
 

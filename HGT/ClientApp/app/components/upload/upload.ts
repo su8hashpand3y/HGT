@@ -8,10 +8,23 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 })
 export class UploadComponent {
     constructor(private http: Http) { }
+
+    name: string;
+    description: string;
+    categories: string[] = ["Music", "Dance", "Other"];
+    category: string
+
+
     upload(selectedFile: File) {
         console.log(selectedFile);
         let formData: FormData = new FormData();
         formData.append('file', selectedFile, selectedFile.name);
+
+        //formData.append('email', "hello world");
+        // send other info also 
+        formData.append('category', this.category);
+        formData.append('name', this.name);
+        formData.append('description', this.description);
 
         let token = localStorage.getItem('token');
         token = `Bearer ${token}`;
