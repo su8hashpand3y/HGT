@@ -139,7 +139,7 @@ namespace HGT.Controllers
                             expires: DateTime.Now.AddMinutes(30),
                             signingCredentials: creds);
 
-                        return Ok(new
+                        return new JsonResult(new
                         {
                             token = new JwtSecurityTokenHandler().WriteToken(token)
                         });

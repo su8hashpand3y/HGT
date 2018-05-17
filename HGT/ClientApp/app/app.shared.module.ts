@@ -38,6 +38,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
             { path: 'home', component: HomeComponent },
             { path: 'upload', component: UploadComponent },
             { path: 'signup', component: SignUpComponent },
+            { path: 'signin', component: SigninComponent },
             { path: '**', redirectTo: 'home' }
         ]),
         BrowserAnimationsModule,
