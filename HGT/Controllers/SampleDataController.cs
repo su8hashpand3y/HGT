@@ -13,6 +13,9 @@ using Microsoft.IdentityModel.Tokens;
 using HashLibrary;
 using HGT.ViewModels;
 using HGT.Models;
+using Microsoft.AspNetCore.Http;
+using System.IO;
+using NReco.VideoConverter;
 
 namespace HGT.Controllers
 {
@@ -26,6 +29,22 @@ namespace HGT.Controllers
         {
             Configuration = configuration;
             this.services = services;
+        }
+
+
+        [HttpPost("[action]")]
+        public async Task<IActionResult> Upload(IFormFile file)
+        {
+            long size = file.Length;
+            var filePath = Environment.CurrentDirectory + "new.mp4";
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await file.CopyToAsync(stream);
+            }
+
+            // var converter = new FFMpegConverter();
+            converter.ConvertMedia(filePath, filePath + "new", "mp4");
+            return Ok(new { Message = "you Are successfully Logged in" });
         }
 
 
