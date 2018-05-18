@@ -34,16 +34,16 @@ namespace HGT.Controllers
 
 
         [HttpPost("[action]")]
-        public async Task<IActionResult> Upload(IFormFile file, UploadInfoViewModel fileInfo)
+        public async Task<IActionResult> Upload(UploadInfoViewModel fileInfo)
         {
             string userId = HttpContext.GetUserEmail();
             if (!String.IsNullOrEmpty(userId))
             {
-                long size = file.Length;
+                long size = fileInfo.File.Length;
                 var filePath = Environment.CurrentDirectory + "new.mp4";
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
-                    await file.CopyToAsync(stream);
+                    await fileInfo.File.CopyToAsync(stream);
                 }
             }
 
