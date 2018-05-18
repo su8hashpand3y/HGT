@@ -21,7 +21,9 @@ export class SignUpComponent {
     selectedDistrict: string
     gender: string
 
-    constructor(private http: Http, private toast: ToastService) { }
+    constructor(private http: Http, private toast: ToastService) {
+        this.selectedDistrict = "";
+    }
     
     
 

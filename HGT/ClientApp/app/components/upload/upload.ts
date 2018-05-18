@@ -7,7 +7,9 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
     styleUrls: ['./upload.css']
 })
 export class UploadComponent {
-    constructor(private http: Http) { }
+    constructor(private http: Http) {
+        this.category = "";
+    }
 
     name: string;
     description: string;

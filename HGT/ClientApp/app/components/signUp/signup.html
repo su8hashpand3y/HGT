@@ -43,6 +43,7 @@
             <div class="form-group">
                 <label for="district">District</label>
                 <select [(ngModel)]="selectedDistrict" name="selectedDistrict" required>
+                    <option value="" selected>Select A District</option>
                     <option *ngFor="let district of districts" [ngValue]="district">{{district}}</option>
                 </select>
             </div>

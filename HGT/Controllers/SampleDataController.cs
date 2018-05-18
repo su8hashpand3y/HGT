@@ -15,6 +15,7 @@ using HGT.ViewModels;
 using HGT.Models;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using HGT.Helper;
 using NReco.VideoConverter;
 
 namespace HGT.Controllers
@@ -35,11 +36,15 @@ namespace HGT.Controllers
         [HttpPost("[action]")]
         public async Task<IActionResult> Upload(IFormFile file, UploadInfoViewModel fileInfo)
         {
-            long size = file.Length;
-            var filePath = Environment.CurrentDirectory + "new.mp4";
-            using (var stream = new FileStream(filePath, FileMode.Create))
+            string userId = HttpContext.GetUserEmail();
+            if (!String.IsNullOrEmpty(userId))
             {
-                await file.CopyToAsync(stream);
+                long size = file.Length;
+                var filePath = Environment.CurrentDirectory + "new.mp4";
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
             }
 
             // var converter = new FFMpegConverter();
@@ -47,6 +52,7 @@ namespace HGT.Controllers
             return Ok(new { Message = "you Are successfully Logged in" });
         }
 
+       
 
         [Authorize]
         [HttpGet("[action]")]
