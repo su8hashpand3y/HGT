@@ -10,7 +10,7 @@ using System;
 
 namespace HGT.Migrations
 {
-    [DbContext(typeof(UserDbContext))]
+    [DbContext(typeof(HGTDbContext))]
     partial class UserDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

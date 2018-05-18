@@ -21,60 +21,35 @@ using NReco.VideoConverter;
 namespace HGT.Controllers
 {
     [Route("api/[controller]")]
-    public class SampleDataController : Controller
+    public class LoginController : Controller
     {
         private IConfiguration Configuration { get; }
         private IServiceProvider services { get; }
 
-        public SampleDataController(IConfiguration configuration, IServiceProvider services)
+        public LoginController(IConfiguration configuration, IServiceProvider services)
         {
             Configuration = configuration;
             this.services = services;
         }
 
-
-        [HttpPost("[action]")]
-        public async Task<IActionResult> Upload(UploadInfoViewModel fileInfo)
-        {
-            string userId = HttpContext.GetUserEmail();
-            if (!String.IsNullOrEmpty(userId))
-            {
-                long size = fileInfo.File.Length;
-                var filePath = Environment.CurrentDirectory + "new.mp4";
-                using (var stream = new FileStream(filePath, FileMode.Create))
-                {
-                    await fileInfo.File.CopyToAsync(stream);
-                }
-            }
-
-            // var converter = new FFMpegConverter();
-            // converter.ConvertMedia(filePath, filePath + "new", "mp4");
-            return Ok(new { Message = "you Are successfully Logged in" });
-        }
-
-       
-
         [Authorize]
         [HttpGet("[action]")]
-        public async Task<IActionResult> GetSecret()
+        public  IActionResult GetSecret()
         {
             return Ok(new { Message = "you Are successfully Logged in" });
         }
 
 
 
-        // [HttpPost]
         [AllowAnonymous]
-        // [ValidateAntiForgeryToken]
         [HttpPost("[action]")]
-        public async Task<IActionResult> Register([FromBody]RegisterViewModel model, string returnUrl = null)
+        public IActionResult Register([FromBody]RegisterViewModel model, string returnUrl = null)
         {
-
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var context = this.services.GetService(typeof(UserDbContext)) as UserDbContext;
+                    var context = this.services.GetService(typeof(HGTDbContext)) as HGTDbContext;
                     if (context.HGTUsers.FirstOrDefault(x => x.Email == model.Email) == null)
                     {
                         var hasher = new Hasher();
@@ -120,18 +95,16 @@ namespace HGT.Controllers
         }
 
 
-        // [HttpPost]
         [AllowAnonymous]
-        // [ValidateAntiForgeryToken]
         [HttpPost("[action]")]
-        public async Task<IActionResult> Login([FromBody]LoginViewModel user, string returnUrl = null)
+        public IActionResult Login([FromBody]LoginViewModel user, string returnUrl = null)
         {
 
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
                 bool succeeded = false;
-                var context = this.services.GetService(typeof(UserDbContext)) as UserDbContext;
+                var context = this.services.GetService(typeof(HGTDbContext)) as HGTDbContext;
                 var foundUser = context.HGTUsers.FirstOrDefault(x => x.Email == user.Email);
                 if (foundUser == null)
                     return Ok(new { Message = "User not found" });

@@ -10,7 +10,7 @@ using System;
 
 namespace HGT.Migrations
 {
-    [DbContext(typeof(UserDbContext))]
+    [DbContext(typeof(HGTDbContext))]
     [Migration("20180518084026_Adding videoInfo")]
     partial class AddingvideoInfo
     {

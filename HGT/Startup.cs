@@ -27,8 +27,8 @@ namespace HGT
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<UserDbContext>(options =>
-             options.UseSqlServer(Configuration.GetConnectionString("HGTUser")));
+            services.AddDbContext<HGTDbContext>(options =>
+             options.UseSqlServer(Configuration.GetConnectionString("HGTDB")));
 
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
        .AddJwtBearer(options =>

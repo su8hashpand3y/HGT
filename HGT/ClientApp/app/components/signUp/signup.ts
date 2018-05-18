@@ -1,6 +1,7 @@
 ﻿import { Component, Input } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Response, Headers, RequestOptions } from '@angular/http';
 import { ToastService } from '../../ToastService';
+import { InternetService } from '../../InternetService';
 
 
 @Component({
@@ -21,21 +22,11 @@ export class SignUpComponent {
     selectedDistrict: string
     gender: string
 
-    constructor(private http: Http, private toast: ToastService) {
+    constructor(private toast: ToastService, private internet: InternetService) {
         this.selectedDistrict = "";
     }
-    
-    
 
     register() {
-        console.log("registering");
-
-        let localData = localStorage.getItem("returndata");
-        console.log(`local data is ${localData}`);
-
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
-
         let user = {
             firstName: this.firstName || "",
             lastName: this.lastName || "",
@@ -48,14 +39,12 @@ export class SignUpComponent {
             gender: this.gender || "",
         };
 
-        console.log(user);
-
-        this.http.post("/api/SampleData/Register", user, options).subscribe((data: any) => {
-            localStorage.setItem('returndata', data._body);
-            this.toast.success(data._body);
-        }, err => {
+        this.internet.post("/api/Login/Register", user, 'application/json').subscribe((data: any) => {
+            console.log("sign up service");
+            console.log(data);
+            this.toast.success(data);
+        }, (err: any) => {
             this.toast.error(err._body);
-            console.log(err);
         });
         
     }

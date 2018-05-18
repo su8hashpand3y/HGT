@@ -11,7 +11,7 @@ using System;
 
 namespace HGT.Migrations
 {
-    [DbContext(typeof(UserDbContext))]
+    [DbContext(typeof(HGTDbContext))]
     [Migration("20180509064058_initial")]
     partial class initial
     {

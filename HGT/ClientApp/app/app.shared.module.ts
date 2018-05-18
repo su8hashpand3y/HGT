@@ -12,6 +12,7 @@ import { SignUpComponent } from './components/signUp/signUp';
 import { SigninComponent } from './components/signin/signin';
 import { UploadComponent } from './components/upload/Upload';
 import { ToastService } from './ToastService';
+import { InternetService } from './InternetService';
 
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -44,7 +45,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         BrowserAnimationsModule,
         ToastModule.forRoot()
     ],
-    providers: [ToastService]
+    providers: [ToastService, InternetService]
 })
 export class AppModuleShared {
 

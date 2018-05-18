@@ -11,8 +11,8 @@ using System;
 namespace HGT.Migrations
 {
     [DbContext(typeof(HGTDbContext))]
-    [Migration("20180517095304_new")]
-    partial class @new
+    [Migration("20180518101325_DBChangedRefactoring")]
+    partial class DBChangedRefactoring
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,22 @@ namespace HGT.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.0.2-rtm-10011")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("HGT.Models.Comment", b =>
+                {
+                    b.Property<long>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("CommentText");
+
+                    b.Property<string>("User");
+
+                    b.Property<string>("Video");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Comments");
+                });
 
             modelBuilder.Entity("HGT.Models.HGTUser", b =>
                 {
@@ -30,10 +46,14 @@ namespace HGT.Migrations
 
                     b.Property<int>("Age");
 
+                    b.Property<int>("AllowedSpaceMB");
+
                     b.Property<string>("AvatarPath");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
+
+                    b.Property<long>("Credits");
 
                     b.Property<string>("District");
 
@@ -66,9 +86,13 @@ namespace HGT.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed");
 
+                    b.Property<int>("ReportedSpamCount");
+
                     b.Property<string>("Salt");
 
                     b.Property<string>("SecurityStamp");
+
+                    b.Property<bool>("SuperUser");
 
                     b.Property<string>("Town");
 
@@ -90,6 +114,52 @@ namespace HGT.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("HGT.Models.Like", b =>
+                {
+                    b.Property<long>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("User");
+
+                    b.Property<string>("Video");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Likes");
+                });
+
+            modelBuilder.Entity("HGT.Models.VideoInfo", b =>
+                {
+                    b.Property<long>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("Donation");
+
+                    b.Property<bool>("IsFeatured");
+
+                    b.Property<bool>("IsReviewed");
+
+                    b.Property<long>("Likes");
+
+                    b.Property<string>("Location");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("Path");
+
+                    b.Property<int>("SpamCount");
+
+                    b.Property<bool>("SuperVideo");
+
+                    b.Property<string>("UniqueID");
+
+                    b.Property<DateTime>("UploadDateTime");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Videos");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
