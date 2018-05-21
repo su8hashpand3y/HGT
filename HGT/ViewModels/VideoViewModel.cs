@@ -9,6 +9,8 @@ namespace HGT.ViewModels
 {
     public class VideoViewModel 
     {
+        public long VideoId { get; set; }
+
         public string FolderName { get; set; }
         public string FileName { get; set; }
         public string Poster { get; set; }

@@ -6,6 +6,8 @@ using HGT.Models;
 using HGT.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using HGT.Helper;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -38,15 +40,48 @@ namespace HGT.Controllers
                     Title = video.Title,
                     UserFirstName = user?.FirstName,
                     UserDistrict = user?.District,
-                    NumberOfLikes = video.Likes
+                    NumberOfLikes = video.Likes,
+                    VideoId = video.ID
                 });
             }
 
             return Ok(result);
         }
 
-       private HGTUser GetUserInfo(HGTDbContext dbContext, VideoInfo video) {
-            return dbContext.HGTUsers.FirstOrDefault(x => x.Id == video.HGTUserID);
+        [HttpPost]
+        [Authorize]
+        public IActionResult Like(long videoId)
+        {
+            var context = this.services.GetService(typeof(HGTDbContext)) as HGTDbContext;
+            var likedVideo = context.Videos.FirstOrDefault(x => x.ID == videoId);
+            if (likedVideo != null)
+            {
+                likedVideo.Likes++;
+                var like = new Like { VideoId = videoId, UserId = HttpContext.GetUserID() };
+                context.Likes.Add(like);
+                context.SaveChanges();
+                return Ok(like);
+            }
+
+            return BadRequest();
+        }
+
+        [HttpPost]
+        [Authorize]
+        public IActionResult Comment(long videoId,string commentText)
+        {
+            var context = this.services.GetService(typeof(HGTDbContext)) as HGTDbContext;
+            var likedVideo = context.Videos.FirstOrDefault(x => x.ID == videoId);
+            if (likedVideo != null)
+            {
+                likedVideo.Comments++;
+                var comment = new Comment { VideoId = videoId, UserId = HttpContext.GetUserID(), CommentText = commentText };
+                context.Comments.Add(comment);
+                context.SaveChanges();
+                return Ok(comment);
+            }
+
+            return BadRequest();
         }
     }
 }

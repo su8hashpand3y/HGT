@@ -60,7 +60,6 @@ namespace HGT.Controllers
                         {
                             FolderName = user.Id,
                             FileName = uniqueID,
-                            UniqueID = uniqueID,
                             UploadDateTime = DateTime.Now,
                             Title = fileInfo.Title,
                             Description = fileInfo.Description,

@@ -18,11 +18,11 @@ namespace HGT.Models
         public bool IsReviewed { get; set; }
         public DateTime UploadDateTime { get; set; }
         public long Likes { get; set; }
+        public long Comments { get; set; }
         public bool  IsFeatured { get; set; }
         public int Donation { get; set; }
         public bool SuperVideo { get; set; }
         public int SpamCount { get; set; }
-        public string UniqueID { get; set; }
         public bool SponseredVideo { get; set; }
 
         public string HGTUserID { get; set; }

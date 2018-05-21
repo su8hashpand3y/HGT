@@ -122,10 +122,11 @@ namespace HGT.Controllers
                 // Check whether Such user Exists in Database or not 
                 if (succeeded)
                 {
-                        var claims = new[]
-                        {
-                              new Claim(ClaimTypes.Name, user.Email)
-                             };
+                    var claims = new[]
+                    {
+                              new Claim(ClaimTypes.Email, user.Email),
+                              new Claim(ClaimTypes.NameIdentifier, foundUser.Id)
+                        };
 
                         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["SecurityKey"]));
                         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
