@@ -18,8 +18,8 @@ export class SmallVideoComponent {
 
     ngOnChanges() {
         this.poster = this.video.poster;
-        this.videoFormat = this.video.format;
-        this.videoUrl = `/Media/${this.video.folderName}/${this.video.fileName}${this.videoFormat}`;
+        this.videoFormat = `video/${this.video.format}`;
+        this.videoUrl = `/Media/${this.video.folderName}/${this.video.fileName}${this.video.format}`;
         console.log(`The vide url is ${this.videoUrl}`);
     }
 }
