@@ -31,6 +31,7 @@
     <None Remove="ClientApp\app\components\upload\upload.ts" />
     <None Remove="ClientApp\app\InternetService.ts" />
     <None Remove="ClientApp\app\ToastService.ts" />
+    <None Remove="ClientApp\app\videoData.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -44,6 +45,7 @@
     <TypeScriptCompile Include="ClientApp\app\components\smallVideo\smallVideo.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\InternetService.ts" />
     <TypeScriptCompile Include="ClientApp\app\ToastService.ts" />
+    <TypeScriptCompile Include="ClientApp\app\videoData.ts" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">

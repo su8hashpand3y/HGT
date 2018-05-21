@@ -8,7 +8,7 @@ namespace HGT.Models
     public class Like
     {
         public long ID { get; set; }
-        public string Video { get; set; }
-        public string User { get; set; }
+        public long VideoId { get; set; }
+        public string UserId { get; set; }
     }
 }

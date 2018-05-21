@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System.Collections.Generic;
 
 namespace HGT.Models
 {
-    public class HGTUser :IdentityUser
+    public class HGTUser : IdentityUser
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -18,5 +19,6 @@ namespace HGT.Models
         public long Credits { get; set; }
         public int ReportedSpamCount { get; set; }
         public bool SuperUser { get; set; }
+        public List<VideoInfo> Videos {get; set;}
     }
 }

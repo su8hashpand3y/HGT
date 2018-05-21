@@ -11,9 +11,10 @@ using System;
 namespace HGT.Migrations
 {
     [DbContext(typeof(HGTDbContext))]
-    partial class UserDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180521053642_temp")]
+    partial class temp
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -140,10 +141,6 @@ namespace HGT.Migrations
 
                     b.Property<int>("Donation");
 
-                    b.Property<string>("FileName");
-
-                    b.Property<string>("FolderName");
-
                     b.Property<string>("Format");
 
                     b.Property<string>("HGTUserID");
@@ -154,7 +151,7 @@ namespace HGT.Migrations
 
                     b.Property<long>("Likes");
 
-                    b.Property<string>("Poster");
+                    b.Property<string>("Location");
 
                     b.Property<int>("SpamCount");
 
@@ -169,8 +166,6 @@ namespace HGT.Migrations
                     b.Property<DateTime>("UploadDateTime");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("HGTUserID");
 
                     b.ToTable("Videos");
                 });
@@ -281,13 +276,6 @@ namespace HGT.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("HGT.Models.VideoInfo", b =>
-                {
-                    b.HasOne("HGT.Models.HGTUser", "HGTUser")
-                        .WithMany("Videos")
-                        .HasForeignKey("HGTUserID");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

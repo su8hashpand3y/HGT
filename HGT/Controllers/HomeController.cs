@@ -13,5 +13,5 @@ namespace HGT.Controllers
         {
             return View();
         }
-    }
+     }
 }

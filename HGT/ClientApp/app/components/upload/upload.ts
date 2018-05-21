@@ -13,7 +13,7 @@ export class UploadComponent {
         this.category = "";
     }
 
-    name: string;
+    title: string;
     description: string;
     categories: string[] = ["Music", "Dance", "Other"];
     category: string
@@ -23,13 +23,13 @@ export class UploadComponent {
         let formData: FormData = new FormData();
         formData.append('file', selectedFile, selectedFile.name);
         formData.append('category', this.category);
-        formData.append('name', this.name);
+        formData.append('title', this.title);
         formData.append('description', this.description);
         this.internet.post("/api/Upload/upload", formData)
             .subscribe(
             data => {
                 console.log('success');
-                this.toast.success(`Your video ${this.name} was uploaded successfully and is under review.`)
+                this.toast.success(`Your video ${this.title} was uploaded successfully and is under review.`)
             }
         );
     }

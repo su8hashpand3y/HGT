@@ -1,10 +1,11 @@
-<img class="center" src="/Media/Got_Talent_logo.jpg" />
+<img class="center" src="/Media/Ggo.jpg" />
 
 
 
-<smallVideo [videoUrl]="video1" ></smallVideo>
+
+
+<smallVideo   *ngFor="let vid of videos"  [video]="vid" ></smallVideo>
 
 
 
-<smallVideo [videoUrl]="video1"></smallVideo>
 

@@ -29,25 +29,56 @@ namespace HGT.Controllers
         [Authorize]
         public async Task<IActionResult> Upload(UploadInfoViewModel fileInfo)
         {
-            string userId = HttpContext.GetUserEmail();
-            if (!String.IsNullOrEmpty(userId))
+            string userEmail = HttpContext.GetUserEmail();
+            if (!String.IsNullOrEmpty(userEmail))
             {
-                long size = fileInfo.File.Length;
-
-               
-                string userDirectoryPath = Path.Combine(this.hostingEnvironment.WebRootPath, userId);
-
-                if (!Directory.Exists(userDirectoryPath))
-                    Directory.CreateDirectory(userDirectoryPath);
-
-                var filePath = Path.Combine(userDirectoryPath, "newaa.mp4");
-                using (var stream = new FileStream(filePath, FileMode.Create))
+                try
                 {
-                    await fileInfo.File.CopyToAsync(stream);
+                    var context = this.services.GetService(typeof(HGTDbContext)) as HGTDbContext;
+
+                    var user = context.HGTUsers.FirstOrDefault(x => x.Email == userEmail);
+                    if (user != null)
+                    {
+                        long size = fileInfo.File.Length;
+                        String ext = System.IO.Path.GetExtension(fileInfo.File.FileName);
+
+                        string userDirectoryPath = Path.Combine(this.hostingEnvironment.WebRootPath,"Media", user.Id);
+
+                        if (!Directory.Exists(userDirectoryPath))
+                            Directory.CreateDirectory(userDirectoryPath);
+
+
+                        var uniqueID = CreateUniqueVideoID();
+                        var filePath = Path.Combine(userDirectoryPath, uniqueID + ext);
+                        using (var stream = new FileStream(filePath, FileMode.Create))
+                        {
+                            await fileInfo.File.CopyToAsync(stream);
+                        }
+                        
+
+                        VideoInfo videoInfo = new VideoInfo
+                        {
+                            FolderName = user.Id,
+                            FileName = uniqueID,
+                            UniqueID = uniqueID,
+                            UploadDateTime = DateTime.Now,
+                            Title = fileInfo.Title,
+                            Description = fileInfo.Description,
+                            Category = fileInfo.Category,
+                            Format = ext,
+                            HGTUserID = user.Id
+                        };
+
+                        context.Videos.Add(videoInfo);
+                        context.SaveChanges();
+                    }
+                }
+                catch
+                {
                 }
             }
 
-            var context = this.services.GetService(typeof(HGTDbContext)) as HGTDbContext;
+
 
 
             // var converter = new FFMpegConverter();
@@ -55,5 +86,14 @@ namespace HGT.Controllers
             return Ok(new { Message = "you Are successfully Logged in" });
         }
 
+        private string CreateUniqueVideoID()
+        {
+            return DateTime.Now.Year.ToString()
+                + DateTime.Now.Month
+                + DateTime.Now.Day
+                + DateTime.Now.Hour
+                + DateTime.Now.Minute
+                + DateTime.Now.Second;
+        }
     }
 }

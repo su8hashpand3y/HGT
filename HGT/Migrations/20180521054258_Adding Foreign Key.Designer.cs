@@ -11,9 +11,10 @@ using System;
 namespace HGT.Migrations
 {
     [DbContext(typeof(HGTDbContext))]
-    partial class UserDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180521054258_Adding Foreign Key")]
+    partial class AddingForeignKey
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -140,10 +141,6 @@ namespace HGT.Migrations
 
                     b.Property<int>("Donation");
 
-                    b.Property<string>("FileName");
-
-                    b.Property<string>("FolderName");
-
                     b.Property<string>("Format");
 
                     b.Property<string>("HGTUserID");
@@ -154,7 +151,7 @@ namespace HGT.Migrations
 
                     b.Property<long>("Likes");
 
-                    b.Property<string>("Poster");
+                    b.Property<string>("Location");
 
                     b.Property<int>("SpamCount");
 
