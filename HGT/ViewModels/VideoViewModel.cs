@@ -17,6 +17,7 @@ namespace HGT.ViewModels
         public string Format { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
+        public string UserId { get; set; }
         public string UserFirstName { get; set; }
         public string UserDistrict { get; set; }
         public long NumberOfLikes { get; set; }

@@ -1,13 +1,20 @@
 ﻿<div class="card">
     <video [poster]="poster" class="main-video" controls="controls" [src]="videoUrl" type="videoFormat"></video>
     <div class="card-body">
-        <h5 class="card-title"> {{video.title}} By {{video.firstName}}</h5>
+        <h5 class="card-title">
+            {{video.title}} By   <a [routerLink]="['/user', video.userId]">
+             {{video.userFirstName}} </a>
+        </h5>
         <p class="card-text"> {{video.Description}}</p>
         <span class='glyphicon glyphicon-heart'></span> Like
-    </div>
+        <a [routerLink]="['/video', video.videoId]">
+            Watch Full Size
+        </a>
+</div>
 
 
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
+            data-backdrop="static" data-keyboard="false">
         <span class='glyphicon glyphicon-bullhorn'></span> Comments
     </button>
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

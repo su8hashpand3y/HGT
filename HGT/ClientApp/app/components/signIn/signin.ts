@@ -2,6 +2,7 @@
 import {  Response, Headers, RequestOptions } from '@angular/http';
 import { ToastService } from '../../ToastService';
 import { InternetService } from '../../InternetService';
+import { AuthService } from '../../AuthService';
 
 
 @Component({
@@ -13,17 +14,11 @@ export class SigninComponent {
     email: string;
     password: string;
 
-    constructor(private toast: ToastService, private internet: InternetService) { }
-
-
-    getSecret() {
-        this.internet.get("/api/SampleData/GetSecret", "application/json").subscribe((data: any) => {
-            this.toast.success(data);
-        });
-    }
+    constructor(private toast: ToastService, private authService: AuthService) { }
 
     signOut() {
-        localStorage.removeItem('token');
+        this.authService.logout();
+        this.toast.success("Successfully Logged Out")
     }
 
     signIn() {
@@ -32,8 +27,11 @@ export class SigninComponent {
             password: this.password
         };
 
-        this.internet.post("/api/Login/Login", user, "application/json").subscribe((data: any) => {
-            localStorage.setItem('token', data.token);
-        });
+        this.authService.login(user).subscribe(sucesss => {
+            if (sucesss)
+                this.toast.success(`${this.email} is successfully Logged In`);
+            else
+                this.toast.error(`${this.email} was not Logged In`);
+    });
     }
 }

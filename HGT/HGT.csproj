@@ -21,25 +21,30 @@
 
   <ItemGroup>
     <!-- Files not to publish (note that the 'dist' subfolders are re-added below) -->
+    <Compile Remove="ClientApp\app\components\detailedVideo\**" />
     <Content Remove="ClientApp\**" />
+    <EmbeddedResource Remove="ClientApp\app\components\detailedVideo\**" />
+    <None Remove="ClientApp\app\components\detailedVideo\**" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\app\AuthService.ts" />
+    <None Remove="ClientApp\app\components\bigVideo\bigVideo.component.ts" />
     <None Remove="ClientApp\app\components\signIn\signin.ts" />
     <None Remove="ClientApp\app\components\signUp\signup.ts" />
     <None Remove="ClientApp\app\components\smallVideo\smallVideo.component.ts" />
     <None Remove="ClientApp\app\components\upload\upload.ts" />
+    <None Remove="ClientApp\app\components\userDetail\userDetail.ts" />
     <None Remove="ClientApp\app\InternetService.ts" />
     <None Remove="ClientApp\app\ToastService.ts" />
     <None Remove="ClientApp\app\videoData.ts" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\app\components\detailedVideo\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\AuthService.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\signIn\signin.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\bigVideo\bigVideo.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\userDetail\userDetail.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\upload\upload.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\signUp\signUp.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\smallVideo\smallVideo.component.ts" />

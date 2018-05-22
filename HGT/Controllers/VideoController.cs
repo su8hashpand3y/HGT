@@ -40,6 +40,7 @@ namespace HGT.Controllers
                     Title = video.Title,
                     UserFirstName = user?.FirstName,
                     UserDistrict = user?.District,
+                    UserId = user?.Id,
                     NumberOfLikes = video.Likes,
                     VideoId = video.ID
                 });
