@@ -22,6 +22,7 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ImageCropperComponent, CropperSettings } from 'ng2-img-cropper';
+import { MaterialDesignModule } from './materialImports';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { ImageCropperComponent, CropperSettings } from 'ng2-img-cropper';
             { path: '**', redirectTo: 'home' }
         ]),
         BrowserAnimationsModule,
-        ToastModule.forRoot()
+        ToastModule.forRoot(),
+        MaterialDesignModule
     ],
     providers: [ToastService, InternetService, AuthService]
 })
