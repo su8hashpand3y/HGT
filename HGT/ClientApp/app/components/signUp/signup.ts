@@ -4,10 +4,13 @@ import { ToastService } from '../../ToastService';
 import { InternetService } from '../../InternetService';
 
 
+import {ImageCropperComponent, CropperSettings} from 'ng2-img-cropper';
+
+
 @Component({
     selector: 'signUp',
     templateUrl: './signUp.html',
-    styleUrls: ['./signUp.css']
+    styleUrls: ['./signUp.css'],
 })
 export class SignUpComponent {
     firstName: string;
@@ -22,11 +25,30 @@ export class SignUpComponent {
     selectedDistrict: string
     gender: string
 
+
+    encodedSource : string
+
     constructor(private toast: ToastService, private internet: InternetService) {
         this.selectedDistrict = "";
+
+
+
+        this.cropperSettings = new CropperSettings();
+        this.cropperSettings.width = 100;
+        this.cropperSettings.height = 100;
+        this.cropperSettings.croppedWidth = 100;
+        this.cropperSettings.croppedHeight = 100;
+        this.cropperSettings.canvasWidth = 400;
+        this.cropperSettings.canvasHeight = 300;
+
+        this.data = {};
     }
 
     register() {
+
+
+        console.log(this.data);
+
         let user = {
             firstName: this.firstName || "",
             lastName: this.lastName || "",
@@ -48,4 +70,9 @@ export class SignUpComponent {
         });
         
     }
+
+
+
+    data: any;
+    cropperSettings: CropperSettings;
 }

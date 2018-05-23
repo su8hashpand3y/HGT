@@ -14,7 +14,7 @@ namespace HGT.Models
         public bool IsVerified { get; set; }
         public string VerificationCode { get; set; }
         public string Salt { get; set; }
-        public string AvatarPath { get; set; }
+        public string AvatarImage { get; set; }
         public int AllowedSpaceMB { get; set; }
         public long Credits { get; set; }
         public int ReportedSpamCount { get; set; }

@@ -21,6 +21,7 @@ import { UserDetailComponent } from './components/userDetail/userDetail'
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { ImageCropperComponent, CropperSettings } from 'ng2-img-cropper';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         SigninComponent,
         UploadComponent,
         BigVideoComponent,
-        UserDetailComponent
+        UserDetailComponent,
+        ImageCropperComponent
     ],
     imports: [
         CommonModule,

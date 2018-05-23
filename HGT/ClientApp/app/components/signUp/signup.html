@@ -3,7 +3,13 @@
         <div margin-bottom:10px>
             <h3>Hey you Wanna SignUp ? .Enter your Details below</h3>
         </div>
-        <form ngNativeValidate  (ngSubmit)="register()" >
+        <form (ngSubmit)="register()">
+
+            <img [src]='encodedSource'>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
+                    data-backdrop="static" data-keyboard="false">
+                <span class='glyphicon glyphicon-bullhorn'></span> Pick An Image
+            </button>
 
             <div class="form-group">
                 <label for="firstName">First Name</label>
@@ -33,9 +39,9 @@
                 <label for="gender">Gender</label>
                 <div class="input-group-prepend">
                     <div class="input-group-text">
-                        <input type="radio" name="gender" value="male"  required  [(ngModel)]="gender"  > Male
-                        <input type="radio" name="gender" value="female"  [(ngModel)]="gender" checked > Female
-                        <input type="radio" name="gender" value="other"   [(ngModel)]="gender" > Other
+                        <input type="radio" name="gender" value="male" required [(ngModel)]="gender"> Male
+                        <input type="radio" name="gender" value="female" [(ngModel)]="gender" checked> Female
+                        <input type="radio" name="gender" value="other" [(ngModel)]="gender"> Other
                     </div>
                 </div>
             </div>
@@ -50,17 +56,43 @@
 
             <div class="form-group">
                 <label for="town">Town</label>
-                <input type="text"  [(ngModel)]="town" class="form-control" id="town" name="town"  placeholder="Your Town" required>
+                <input type="text" [(ngModel)]="town" class="form-control" id="town" name="town" placeholder="Your Town" required>
             </div>
 
-           
+
 
             <div class="form-group">
                 <label for="captha">Enter text 'Captha' in below text box</label>
-                <input type="text" class="form-control" id="captha" placeholder="Captha"  [(ngModel)]="capthaAnswer" name="capthaAnswer"  required>
+                <input type="text" class="form-control" id="captha" placeholder="Captha" [(ngModel)]="capthaAnswer" name="capthaAnswer" required>
             </div>
 
-            <button type="submit" class="btn btn-primary"  >Sign Me Up</button>
+            <button type="submit" class="btn btn-primary">Sign Me Up</button>
+
+           
         </form>
     </div>
+
+
+    
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Select Image</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img-cropper [image]="data" [settings]="cropperSettings"></img-cropper><br>
+                    <img *ngIf="data.image" [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Dome</button>
+                </div>
+            </div>
+        </div>
     </div>
+
+</div>
