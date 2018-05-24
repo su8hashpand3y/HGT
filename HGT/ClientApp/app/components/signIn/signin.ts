@@ -3,6 +3,7 @@ import {  Response, Headers, RequestOptions } from '@angular/http';
 import { ToastService } from '../../ToastService';
 import { InternetService } from '../../InternetService';
 import { AuthService } from '../../AuthService';
+import { MatDialogRef } from '@angular/material';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class SigninComponent {
     email: string="";
     password: string="";
 
-    constructor(private toast: ToastService, private authService: AuthService) { }
+    constructor(private toast: ToastService, private authService: AuthService, public dialogRef: MatDialogRef<SigninComponent>) { }
 
     signOut() {
         this.authService.logout();
@@ -27,11 +28,18 @@ export class SigninComponent {
             password: this.password
         };
 
-        this.authService.login(user).subscribe((sucesss:any) => {
+        this.toast.info("it works here too ");
+
+        this.authService.login(user).subscribe((sucesss: any) => {
+            console.log("sign in ts logn ");
+            console.log(sucesss);
             if (sucesss)
-                this.toast.success(`${this.email} is successfully Logged In`);
-            else
-                this.toast.error(`${this.email} was not Logged In`);
+            {
+                if (this.dialogRef && sucesss.token)
+                    this.dialogRef.close(sucesss);
+                else
+                    this.toast.success(`${this.email} was not Logged In`);
+            }
     });
     }
 }

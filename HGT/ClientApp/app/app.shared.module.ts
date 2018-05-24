@@ -25,6 +25,9 @@ import { MaterialDesignModule } from './materialImports';
 import { HttpClientModule } from '@angular/common/http';
 import { AvatarPicker } from './components/avatarPicker/avatarPicker';
 
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogRef } from '@angular/material';
+
 
 @NgModule({
     declarations: [
@@ -56,9 +59,10 @@ import { AvatarPicker } from './components/avatarPicker/avatarPicker';
             { path: '**', redirectTo: 'home' }
         ]),
         BrowserAnimationsModule,
-        MaterialDesignModule
+        MaterialDesignModule,
+        MatSnackBarModule,
     ],
-    providers: [ToastService, InternetService, AuthService]
+    providers: [ToastService, InternetService, AuthService, { provide: MatDialogRef, useValue: {} },]
 })
 export class AppModuleShared {
 

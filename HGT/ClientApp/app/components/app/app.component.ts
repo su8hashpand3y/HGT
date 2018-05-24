@@ -6,7 +6,4 @@ import { ToastService } from '../../ToastService';
     styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-    constructor(vcr: ViewContainerRef, private ts: ToastService) {
-        ts.setVCR(vcr);
-    }
 }

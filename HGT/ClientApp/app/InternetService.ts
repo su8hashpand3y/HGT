@@ -11,7 +11,7 @@ import { HttpHeaders } from '@angular/common/http';
 export class InternetService {
     constructor(private http: HttpClient, private toast: ToastService) { }
 
-    get(url: string, contentType?: string): Observable<Response> {
+    get(url: string, contentType?: string): Observable<Object> {
 
         let token = localStorage.getItem('token');
         token = `Bearer ${token}`;
@@ -20,13 +20,13 @@ export class InternetService {
             headers.append('Content-Type', contentType);
         }
         // let requestOptions = new RequestOptions({ headers: headers });
-        return this.http.get(url, { headers: headers }).pipe(map((res: any) => res.json(), (err: any) => {
-            console.log(err);
-            // Log Error to server here
-        }));
+        return this.http.get(url, { headers: headers });//.pipe(map((res: any) => res.json(), (err: any) => {
+        ////    console.log(err);
+        ////    // Log Error to server here
+        ////}));
     }
 
-    post(url: string, body: any, contentType?: string): Observable<Response> {
+    post(url: string, body: any, contentType?: string): Observable<Object> {
 
         let token = localStorage.getItem('token');
         token = `Bearer ${token}`;
@@ -35,12 +35,12 @@ export class InternetService {
             headers.append('Content-Type', contentType);
         }
         //let requestOptions = new RequestOptions({ headers: headers });
-        return this.http.post(url, body, { headers: headers }).pipe(map((res:any) => res.json(), (err: any) => {
-            console.log(err);
-            console.log("internet service");
-            console.log(err._body);
-            // Log Error to server here
-        }));
+        return this.http.post(url, body, { headers: headers }); //.pipe(map((err: any) => {
+        //    console.log(err);
+        //    console.log("internet service");
+        //    console.log(err._body);
+        //    // Log Error to server here
+        //}));
     }
 
 }

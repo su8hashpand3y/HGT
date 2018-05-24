@@ -14,6 +14,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material";
                     <button type="button" mat-dialog-close class="btn btn-secondary" data-dismiss="modal"  (click)="onNoClick()">Close</button>
                     <button type="button" class="btn btn-primary" (click)="onDoneClick()">Done</button>
                 </mat-dialog-actions>`,
+    styleUrls: ['../signUp/signup.css'],
 })
 export class AvatarPicker {
     data: any;

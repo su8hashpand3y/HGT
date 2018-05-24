@@ -1,28 +1,23 @@
 ﻿
-import {
-    ViewContainerRef, Injectable
-} from '@angular/core';
+import { Injectable } from '@angular/core';
+import { MatSnackBar } from '@angular/material';
 
 @Injectable()
 export class ToastService {
-    //constructor(public toastr: ToastsManager) { }
+    constructor(public snackBar: MatSnackBar) { }
     success(msg:string) {
-        //this.toastr.success(msg);
+        this.snackBar.open(msg);
     }
 
     info(msg: string) {
-        //this.toastr.info(msg);
+        this.snackBar.open(msg);
     }
 
     warning(msg: string) {
-        //this.toastr.warning(msg);
+        this.snackBar.open(msg);
     }
 
     error(msg: string) {
-        //this.toastr.error(msg);
-    }
-
-    setVCR(vcr: ViewContainerRef) {
-        //this.toastr.setRootViewContainerRef(vcr);
+        this.snackBar.open(msg);
     }
 }

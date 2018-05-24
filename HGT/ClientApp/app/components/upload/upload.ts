@@ -2,6 +2,7 @@
 import {  Response, Headers, RequestOptions } from '@angular/http';
 import { InternetService } from '../../InternetService';
 import { ToastService } from '../../ToastService';
+import { AuthService } from '../../AuthService';
 
 @Component({
     selector: 'upload',
@@ -9,7 +10,7 @@ import { ToastService } from '../../ToastService';
     styleUrls: ['./upload.css']
 })
 export class UploadComponent {
-    constructor(private internet: InternetService, private toast: ToastService) {
+    constructor(private internet: InternetService, private toast: ToastService, private authService: AuthService) {
         this.category = "";
     }
 
@@ -20,17 +21,25 @@ export class UploadComponent {
 
 
     upload(selectedFile: File) {
-        let formData: FormData = new FormData();
-        formData.append('file', selectedFile, selectedFile.name);
-        formData.append('category', this.category);
-        formData.append('title', this.title);
-        formData.append('description', this.description);
-        this.internet.post("/api/Upload/upload", formData)
-            .subscribe(
-            data => {
-                console.log('success');
-                this.toast.success(`Your video ${this.title} was uploaded successfully and is under review.`)
-            }
-        );
+
+        if (!this.authService.isAuthenticated()) {
+            console.log("Should Open a popup now")
+            this.authService.openLoginDialog().subscribe((x: any) => {
+                console.log("Dialogue returned something")
+                let formData: FormData = new FormData();
+                formData.append('file', selectedFile, selectedFile.name);
+                formData.append('category', this.category);
+                formData.append('title', this.title);
+                formData.append('description', this.description);
+                this.internet.post("/api/Upload/upload", formData)
+                    .subscribe(
+                    data => {
+                        console.log('success');
+                        this.toast.success(`Your video ${this.title} was uploaded successfully and is under review.`)
+                    }
+                    );
+            });
+        }
+
     }
 }
