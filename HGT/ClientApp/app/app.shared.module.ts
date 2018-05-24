@@ -1,7 +1,6 @@
 import { NgModule, ViewContainerRef} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './components/app/app.component';
@@ -18,11 +17,13 @@ import { AuthService } from './AuthService';
 import { UserDetailComponent } from './components/userDetail/userDetail'
 
 
-import { ToastModule } from 'ng2-toastr/ng2-toastr';
+//import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ImageCropperComponent, CropperSettings } from 'ng2-img-cropper';
 import { MaterialDesignModule } from './materialImports';
+import { HttpClientModule } from '@angular/common/http';
+import { AvatarPicker } from './components/avatarPicker/avatarPicker';
 
 
 @NgModule({
@@ -36,11 +37,12 @@ import { MaterialDesignModule } from './materialImports';
         UploadComponent,
         BigVideoComponent,
         UserDetailComponent,
-        ImageCropperComponent
+        ImageCropperComponent,
+        AvatarPicker
     ],
     imports: [
         CommonModule,
-        HttpModule,
+        HttpClientModule ,
         FormsModule,
         RouterModule.forRoot([
             { path: '', redirectTo: 'signup', pathMatch: 'full' },
@@ -50,10 +52,10 @@ import { MaterialDesignModule } from './materialImports';
             { path: 'signin', component: SigninComponent },
             { path: 'video/:id', component: BigVideoComponent },
             { path: 'user/:id', component: UserDetailComponent },
+            { path: 'avatar', component: AvatarPicker },
             { path: '**', redirectTo: 'home' }
         ]),
         BrowserAnimationsModule,
-        ToastModule.forRoot(),
         MaterialDesignModule
     ],
     providers: [ToastService, InternetService, AuthService]

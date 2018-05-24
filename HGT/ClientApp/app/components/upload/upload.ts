@@ -13,10 +13,10 @@ export class UploadComponent {
         this.category = "";
     }
 
-    title: string;
-    description: string;
+    title: string = "";
+    description: string = "";
     categories: string[] = ["Music", "Dance", "Other"];
-    category: string
+    category: string = "";
 
 
     upload(selectedFile: File) {

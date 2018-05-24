@@ -9,12 +9,12 @@ import { videoData } from '../../videoData';
 export class SmallVideoComponent {
     video1: string = "Media/SampleVideo_1280x720_1mb.mp4";
 
-    poster: string;
-    videoUrl: string;
-    videoFormat: string;
+    poster: string = "";
+    videoUrl: string = "";
+    videoFormat: string = "";
 
     @Input()
-    video: videoData;
+    video: videoData = new videoData();
 
     ngOnChanges() {
         this.poster = this.video.poster;

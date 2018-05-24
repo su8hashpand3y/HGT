@@ -15,17 +15,17 @@ import { AvatarPicker } from '../avatarPicker/avatarPicker';
     styleUrls: ['./signUp.css'],
 })
 export class SignUpComponent {
-    firstName: string;
-    lastName: string;
-    email: string;
-    capthaName: string;
-    capthaAnswer: string;
-    password: string;
-    district: string;
-    town: string;
+    firstName: string = "";
+    lastName: string = "";
+    email: string = "";
+    capthaName: string = "";
+    capthaAnswer: string = "";
+    password: string = "";
+    district: string = "";
+    town: string = "";
     districts: string[] = ["Bilaspur", "Chamba", "Hamirpur", "Kangra", "Kinnaur", "Kullu", "Lahaul and Spiti", "Mandi", "Shimla", "Sirmaur", "Solan", "Una"];
-    selectedDistrict: string
-    gender: string
+    selectedDistrict: string = ""
+    gender: string = ""
 
 
     encodedSource : string
@@ -36,13 +36,14 @@ export class SignUpComponent {
     }
 
     openDialog(): void {
+        console.log("Oprining Dialog")
         let dialogRef = this.dialog.open(AvatarPicker, {
-            width: '250px',
             data: { name: "", animal: "" }
         });
 
         dialogRef.afterClosed().subscribe(result => {
             console.log('The dialog was closed');
+            console.log(result);
             this.encodedSource = result;
         });
      }
@@ -51,15 +52,16 @@ export class SignUpComponent {
 
     register() {
         let user = {
-            firstName: this.firstName || "",
-            lastName: this.lastName || "",
-            email: this.email || "",
-            capthaName: this.capthaName || "",
-            capthaAnswer: this.capthaAnswer || "",
-            password: this.password || "",
-            district: this.selectedDistrict || "",
-            town: this.town || "",
-            gender: this.gender || "",
+            firstName: this.firstName,
+            lastName: this.lastName,
+            email: this.email,
+            capthaName: this.capthaName,
+            capthaAnswer: this.capthaAnswer,
+            password: this.password,
+            district: this.selectedDistrict,
+            town: this.town,
+            gender: this.gender,
+            avatarImage: this.encodedSource
         };
 
         this.internet.post("/api/Login/Register", user, 'application/json').subscribe((data: any) => {

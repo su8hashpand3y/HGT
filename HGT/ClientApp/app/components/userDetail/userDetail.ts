@@ -10,17 +10,17 @@ import { InternetService } from '../../InternetService';
     styleUrls: ['./userDetail.css']
 })
 export class UserDetailComponent {
-    firstName: string;
-    lastName: string;
-    email: string;
-    capthaName: string;
-    capthaAnswer: string;
-    password: string;
-    district: string;
-    town: string;
+    firstName: string = "";
+    lastName: string = "";
+    email: string = "";
+    capthaName: string = "";
+    capthaAnswer: string = "";
+    password: string = "";
+    district: string = "";
+    town: string = "";
     districts: string[] = ["Bilaspur", "Chamba", "Hamirpur", "Kangra", "Kinnaur", "Kullu", "Lahaul and Spiti", "Mandi", "Shimla", "Sirmaur", "Solan", "Una"];
-    selectedDistrict: string
-    gender: string
+    selectedDistrict: string = "";
+    gender: string = "";
 
     constructor(private toast: ToastService, private internet: InternetService) {
         this.selectedDistrict = "";

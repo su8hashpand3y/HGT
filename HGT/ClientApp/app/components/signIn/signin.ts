@@ -11,8 +11,8 @@ import { AuthService } from '../../AuthService';
     styleUrls: ['./signin.css']
 })
 export class SigninComponent {
-    email: string;
-    password: string;
+    email: string="";
+    password: string="";
 
     constructor(private toast: ToastService, private authService: AuthService) { }
 
@@ -27,7 +27,7 @@ export class SigninComponent {
             password: this.password
         };
 
-        this.authService.login(user).subscribe(sucesss => {
+        this.authService.login(user).subscribe((sucesss:any) => {
             if (sucesss)
                 this.toast.success(`${this.email} is successfully Logged In`);
             else

@@ -64,7 +64,8 @@ namespace HGT.Controllers
                             Gender = model.Gender,
                             District = model.District,
                             Town = model.Town,
-                            Age = model.Age
+                            Age = model.Age,
+                            AvatarImage= model.AvatarImage
                         };
                         context.HGTUsers.Add(newUser);
                         context.SaveChanges();

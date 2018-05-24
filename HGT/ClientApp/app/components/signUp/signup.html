@@ -3,11 +3,11 @@
         <div margin-bottom:10px>
             <h3>Hey you Wanna SignUp ? .Enter your Details below</h3>
         </div>
-        <form (ngSubmit)="register()">
+        <form ngNativeValidate (ngSubmit)="register()">
 
-            <img [src]='encodedSource'>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
-                    data-backdrop="static" data-keyboard="false">
+            <img *ngIf="encodedSource" [src]='encodedSource'>
+            <button type="button" class="btn btn-primary" 
+                    (click)="openDialog()">
                 <span class='glyphicon glyphicon-bullhorn'></span> Pick An Image
             </button>
 
@@ -30,7 +30,7 @@
 
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" [(ngModel)]="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                <input type="password" [(ngModel)]="password" pattern=".{4,}" title="Minimum 4 characters required." class="form-control" id="password" name="password" placeholder="Password" required>
             </div>
 
 
@@ -71,28 +71,4 @@
            
         </form>
     </div>
-
-
-    
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Select Image</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <img-cropper [image]="data" [settings]="cropperSettings"></img-cropper><br>
-                    <img *ngIf="data.image" [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Dome</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
 </div>

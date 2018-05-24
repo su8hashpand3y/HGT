@@ -10,7 +10,10 @@ import { ActivatedRoute } from '@angular/router';
 export class BigVideoComponent {
     id: number;
     private sub: any;
-    constructor(private route: ActivatedRoute) { }
+    constructor(private route: ActivatedRoute) {
+        this.id = 0;
+        this.sub = {};
+    }
 
     ngOnInit() {
         this.sub = this.route.params.subscribe(params => {
@@ -27,12 +30,12 @@ export class BigVideoComponent {
 
 
 
-    poster: string;
-    videoUrl: string;
-    videoFormat: string;
+    poster: string = "";
+    videoUrl: string = "";
+    videoFormat: string = "";
 
     @Input()
-    video: videoData;
+    video: videoData = new videoData();
 
     ngOnChanges() {
         this.poster = this.video.poster;

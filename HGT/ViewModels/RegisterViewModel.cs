@@ -17,6 +17,7 @@ namespace HGT.ViewModels
         [Required]
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string AvatarImage { get; set; }
         public string CapthaName { get; set; }
         public string CapthaAnswer { get; set; }
 

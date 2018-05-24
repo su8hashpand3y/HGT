@@ -10,7 +10,8 @@ import { videoData } from '../../videoData';
 export class HomeComponent {
     video1: string = "Media/SampleVideo_1280x720_1mb.mp4";
     videos: videoData[] = [];
-    constructor(private internet: InternetService) {}
+    constructor(private internet: InternetService) {
+    }
     ngOnInit() {
         this.internet.get("/video").subscribe((x: any) => {
             this.videos.push(...x);
