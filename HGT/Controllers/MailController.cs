@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HGT.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,18 +10,17 @@ namespace HGT.Controllers
 {
     public class MailController
     {
-        public void Send()
-        {
-            SmtpClient client = new SmtpClient("smtp.gmail.com");
-            client.UseDefaultCredentials = false;
-            client.Credentials = new NetworkCredential("hackersubhash", "lotus#123");
+        private readonly IEmailSender _emailSender;
 
-            MailMessage mailMessage = new MailMessage();
-            mailMessage.From = new MailAddress("hackersubhash@gmail.com");
-            mailMessage.To.Add("su8hash@gmail.com");
-            mailMessage.Body = "body";
-            mailMessage.Subject = "subject";
-            client.Send(mailMessage);
+        public MailController(IEmailSender emailSender)
+        {
+            _emailSender = emailSender;
+        }
+
+        public async Task Send()
+        {
+            await _emailSender.SendEmailAsync("test@gmail.com", "No Subject Is here",
+                         $"Welcome Huys");
         }
     }
 }

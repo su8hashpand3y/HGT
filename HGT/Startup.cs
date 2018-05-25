@@ -46,6 +46,8 @@ namespace HGT
            };
        });
 
+            services.AddTransient<IEmailSender, AuthMessageSender>();
+            services.Configure<EmailSettings>(Configuration.GetSection("EmailSettings"));
 
             services.AddMvc();
         }
