@@ -11,5 +11,6 @@ namespace HGT.Models
         public DbSet<VideoInfo> Videos { get; set; }
         public DbSet<Like> Likes { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<Payment> Payments { get; set; }
     }
 }
