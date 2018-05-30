@@ -122,7 +122,7 @@ namespace HGT.Controllers
                     surl,
                     furl,
                     service_provider,
-                    //payUMoneySettings.PAYU_BASE_URL
+                    payUMoneySettings.PAYU_BASE_URL
                 };
 
                 return new JsonResult(payload);
@@ -167,10 +167,7 @@ namespace HGT.Controllers
         {
 
             byte[] message = Encoding.UTF8.GetBytes(text);
-
-            UnicodeEncoding UE = new UnicodeEncoding();
             byte[] hashValue;
-            
             SHA512Managed hashString = new SHA512Managed();
             string hex = "";
             hashValue = hashString.ComputeHash(message);
