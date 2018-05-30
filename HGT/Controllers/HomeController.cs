@@ -13,10 +13,5 @@ namespace HGT.Controllers
         {
             return View();
         }
-
-        public IActionResult PI()
-        {
-            return View();
-        }
     }
 }

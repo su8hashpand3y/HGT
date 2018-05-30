@@ -23,7 +23,7 @@ namespace HGT.Controllers
         }
         // GET: /<controller>/ 
         // [HttpGet()]
-        public IActionResult Index()
+        public IActionResult Index(long skip,int take = 10)
         {
             var result = new List<VideoViewModel>();
             var context = this.services.GetService(typeof(HGTDbContext)) as HGTDbContext;

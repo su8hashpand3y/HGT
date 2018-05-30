@@ -24,20 +24,20 @@ export class HomeComponent {
 
 
     buffer: videoData[] = [];
-    loading: boolean;
+    loading: boolean = false;
 
     onListChange(event: ChangeEvent) {
         if (event.end !== this.buffer.length) return;
         this.loading = true;
-        this.fetchNextChunk(this.buffer.length, 10).then((chunk:any) => {
-            this.buffer = this.buffer.concat(chunk);
-            this.loading = false;
-        }, () => this.loading = false);
+        this.fetchNextChunk(this.buffer.length, 10);
     }
 
-    fetchNextChunk(skip: number, limit: number): Promise<videoData[]> {
-        return new Promise((resolve, reject) => {
-            ....
+    fetchNextChunk(skip: number, limit: number){
+        this.internet.get(`/video?skip=${skip}`).subscribe((x: any) => {
+            this.videos.push(...x);
+            console.log(this.videos);
+            this.buffer = this.buffer.concat(x);
+            this.loading = false;
         });
 }
 }

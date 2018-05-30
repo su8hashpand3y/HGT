@@ -26,14 +26,21 @@ namespace HGT.Controllers
             this.services = services;
             this.payUMoneySettings = payUMoneySettings.Value;
         }
-        public IActionResult Index()
-       {
-            return View();
+
+
+        public IActionResult Donated()
+        {
+            return Ok();
         }
 
-        public IActionResult Error()
+        public IActionResult Success()
+       {
+            return Ok();
+        }
+
+        public IActionResult Fail()
         {
-            return View();
+            return Fail();
         }
 
         public async Task<IActionResult> PreparePayment()
