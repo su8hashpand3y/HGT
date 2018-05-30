@@ -136,31 +136,6 @@ namespace HGT.Controllers
             return null;
         }
 
-        [HttpPost]
-        public JsonResult Pay([FromBody]StripePaymentRequest paymentRequest)
-        {
-
-            try
-            {
-                StripeConfiguration.SetApiKey("sk_test_BQokikJOvBiI2HlWgH4olfQ2");
-
-                var myCharge = new StripeChargeCreateOptions();
-                myCharge.SourceTokenOrExistingSourceId = paymentRequest.tokenId;
-                myCharge.Amount = paymentRequest.amount;
-                myCharge.Currency = "gbp";
-                myCharge.Description = paymentRequest.productName;
-                myCharge.Metadata = new Dictionary<string, string>();
-                myCharge.Metadata["OurRef"] = "OurRef-" + Guid.NewGuid().ToString();
-
-                var chargeService = new StripeChargeService();
-                StripeCharge stripeCharge = chargeService.Create(myCharge);
-                return Json(stripeCharge);
-            }
-            catch (StripeException ex)
-            {
-                return new JsonResult(new { status = ex.Message});
-            }
-        }
 
 
         public string Generatehash512(string text)

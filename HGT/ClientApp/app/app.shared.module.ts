@@ -29,6 +29,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogRef } from '@angular/material';
 import { StripePaymentComponent } from './components/stripePayment/stripePayment';
 
+import { VirtualScrollModule } from 'angular2-virtual-scroll';
+
 
 @NgModule({
     declarations: [
@@ -64,6 +66,7 @@ import { StripePaymentComponent } from './components/stripePayment/stripePayment
         BrowserAnimationsModule,
         MaterialDesignModule,
         MatSnackBarModule,
+        VirtualScrollModule
     ],
     providers: [ToastService, InternetService, AuthService, { provide: MatDialogRef, useValue: {} },]
 })

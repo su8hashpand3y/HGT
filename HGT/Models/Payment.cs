@@ -8,6 +8,7 @@ namespace HGT.Models
 {
     public class Payment
     {
+        public long Id { get; set; }
         public string UserID { get; set; }
         public long Amount { get; set; }
     }

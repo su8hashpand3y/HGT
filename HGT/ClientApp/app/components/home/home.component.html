@@ -1,10 +1,15 @@
 <img class="center" src="/Media/Ggo.jpg" />
 
 
+<virtual-scroll [items]="videos" (update)="scrollItems = $event"
+                (change)="onListChange($event)">
 
+    <<smallVideo *ngFor="let item of scrollItems" [video]="item" [item]="item">
+    </smallVideo>
+    <div *ngIf="loading" class="loader">Loading...</div>
 
+</virtual-scroll>
 
-<smallVideo   *ngFor="let vid of videos"  [video]="vid" ></smallVideo>
 
 
 

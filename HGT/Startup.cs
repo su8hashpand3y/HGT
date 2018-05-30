@@ -52,7 +52,6 @@ namespace HGT
             services.Configure<PayUMoneySettings>(Configuration.GetSection("PayUMoneySettings"));
 
             services.AddMvc();
-            services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
             services.AddCors();
         }
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

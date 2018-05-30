@@ -11,9 +11,10 @@ using System;
 namespace HGT.Migrations
 {
     [DbContext(typeof(HGTDbContext))]
-    partial class UserDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180530104645_addingPaging")]
+    partial class addingPaging
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
