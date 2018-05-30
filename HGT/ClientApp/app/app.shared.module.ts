@@ -27,6 +27,7 @@ import { AvatarPicker } from './components/avatarPicker/avatarPicker';
 
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogRef } from '@angular/material';
+import { StripePaymentComponent } from './components/stripePayment/stripePayment';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { MatDialogRef } from '@angular/material';
         BigVideoComponent,
         UserDetailComponent,
         ImageCropperComponent,
-        AvatarPicker
+        AvatarPicker,
+        StripePaymentComponent
     ],
     imports: [
         CommonModule,
@@ -56,6 +58,7 @@ import { MatDialogRef } from '@angular/material';
             { path: 'video/:id', component: BigVideoComponent },
             { path: 'user/:id', component: UserDetailComponent },
             { path: 'avatar', component: AvatarPicker },
+            { path: 'pay', component: StripePaymentComponent },
             { path: '**', redirectTo: 'home' }
         ]),
         BrowserAnimationsModule,

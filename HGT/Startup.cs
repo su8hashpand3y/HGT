@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Stripe;
 
 namespace HGT
 {
@@ -48,8 +49,11 @@ namespace HGT
 
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.Configure<EmailSettings>(Configuration.GetSection("EmailSettings"));
+            services.Configure<PayUMoneySettings>(Configuration.GetSection("PayUMoneySettings"));
 
             services.AddMvc();
+            services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
+            services.AddCors();
         }
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
@@ -80,6 +84,8 @@ namespace HGT
                     name: "spa-fallback",
                     defaults: new { controller = "Home", action = "Index" });
             });
+
+            StripeConfiguration.SetApiKey(Configuration.GetSection("Stripe")["SecretKey"]);
         }
     }
 }

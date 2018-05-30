@@ -1,0 +1,97 @@
+﻿
+<div>
+    {{takePaymentResult}}
+
+    <button (click)="buyTShirt()">Buy trshirt</button>
+</div>
+
+
+<h1>PayUMoney Payment Request Form </h1>
+<form ngNoForm action="https://sandboxsecure.payu.in/_payment" name="payuform" method=POST>
+    <input type="hidden" name="key" [(ngModel)]="this.payload.key" />
+    <input type="hidden" name="hash_string" [(ngModel)]="this.payload.hashString" />
+    <input type="hidden" name="hash" [(ngModel)]="this.payload.hash" />
+    <input type="hidden" name="txnid" [(ngModel)]="this.payload.txnid" />
+    <table>
+        <tr>
+            <td><b>Mandatory Parameters</b></td>
+        </tr>
+        <tr>
+            <td>Amount: </td>
+            <td><input name="amount" [(ngModel)]="this.payload.amount" /></td>
+            <td>First Name: </td>
+            <td><input name="firstname" id="firstname" [(ngModel)]="this.payload.firstName" /></td>
+        </tr>
+        <tr>
+            <td>Email: </td>
+            <td><input name="email" id="email" [(ngModel)]="this.payload.email" /></td>
+            <td>Phone: </td>
+            <td><input name="phone" /></td>
+        </tr>
+        <tr>
+            <td>Product Info: </td>
+            <td colspan="3"><textarea name="productinfo" [(ngModel)]="this.payload.productinfo">  </textarea></td>
+        </tr>
+        <tr>
+            <td>Success URI: </td>
+            <td colspan="3"><input name="surl" size="64" [(ngModel)]="this.payload.surl" /></td>
+        </tr>
+        <tr>
+            <td>Failure URI: </td>
+            <td colspan="3"><input name="furl" size="64" [(ngModel)]="this.payload.furl" /></td>
+        </tr>
+        <tr>
+            <td colspan="3"><input type="hidden" name="service_provider" value="payu_paisa" /></td>
+        </tr>
+        <tr>
+            <td><b>Optional Parameters</b></td>
+        </tr>
+        <tr>
+            <td>Last Name: </td>
+            <td><input name="lastname" id="lastname" /></td>
+            <td>Cancel URI: </td>
+            <td><input name="curl" value="" /></td>
+        </tr>
+        <tr>
+            <td>Address1: </td>
+            <td><input name="address1" /></td>
+            <td>Address2: </td>
+            <td><input name="address2" /></td>
+        </tr>
+        <tr>
+            <td>City: </td>
+            <td><input name="city" /></td>
+            <td>State: </td>
+            <td><input name="state" /></td>
+        </tr>
+        <tr>
+            <td>Country: </td>
+            <td><input name="country" /></td>
+            <td>Zipcode: </td>
+            <td><input name="zipcode" /></td>
+        </tr>
+        <tr>
+            <td>UDF1: </td>
+            <td><input name="udf1" /></td>
+            <td>UDF2: </td>
+            <td><input name="udf2" /></td>
+        </tr>
+        <tr>
+            <td>UDF3: </td>
+            <td><input name="udf3" /></td>
+            <td>UDF4: </td>
+            <td><input name="udf4" /></td>
+        </tr>
+        <tr>
+            <td>UDF5: </td>
+            <td><input name="udf5" /></td>
+            <td>PG: </td>
+            <td><input name="pg" /></td>
+        </tr>
+        <tr>
+            <td colspan="4"><input type="submit" value="Submit" /></td>
+        </tr>
+    </table>
+</form>
+
+<div class='pm-button'><a href='https://www.payumoney.com/paybypayumoney/#/A2B742AFCC740514EEF47C1FC9DDFBC3'><img src='https://www.payumoney.com/media/images/payby_payumoney/new_buttons/21.png' /></a></div>

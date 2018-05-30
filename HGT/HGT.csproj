@@ -12,6 +12,7 @@
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.8" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.4" />
     <PackageReference Include="NReco.VideoConverter" Version="1.1.2" />
+    <PackageReference Include="Stripe.net" Version="16.3.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -34,6 +35,7 @@
     <None Remove="ClientApp\app\components\signIn\signin.ts" />
     <None Remove="ClientApp\app\components\signUp\signup.ts" />
     <None Remove="ClientApp\app\components\smallVideo\smallVideo.component.ts" />
+    <None Remove="ClientApp\app\components\stripePayment\stripePayment.ts" />
     <None Remove="ClientApp\app\components\upload\upload.ts" />
     <None Remove="ClientApp\app\components\userDetail\userDetail.ts" />
     <None Remove="ClientApp\app\InternetService.ts" />
@@ -47,6 +49,7 @@
     <TypeScriptCompile Include="ClientApp\app\components\avatarPicker\avatarPicker.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\signIn\signin.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\bigVideo\bigVideo.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\stripePayment\stripePayment.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\userDetail\userDetail.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\upload\upload.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\signUp\signUp.ts" />
