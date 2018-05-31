@@ -29,7 +29,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogRef } from '@angular/material';
 import { StripePaymentComponent } from './components/stripePayment/stripePayment';
 
-import { VirtualScrollModule } from 'angular2-virtual-scroll';
+import { InfiniteScrollModule } from "ngx-infinite-scroll";
 
 
 @NgModule({
@@ -52,21 +52,19 @@ import { VirtualScrollModule } from 'angular2-virtual-scroll';
         HttpClientModule ,
         FormsModule,
         RouterModule.forRoot([
-            { path: '', redirectTo: 'signup', pathMatch: 'full' },
+            { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
             { path: 'upload', component: UploadComponent },
             { path: 'signup', component: SignUpComponent },
             { path: 'signin', component: SigninComponent },
             { path: 'video/:id', component: BigVideoComponent },
             { path: 'user/:id', component: UserDetailComponent },
-            { path: 'avatar', component: AvatarPicker },
-            { path: 'pay', component: StripePaymentComponent },
             { path: '**', redirectTo: 'home' }
         ]),
         BrowserAnimationsModule,
         MaterialDesignModule,
         MatSnackBarModule,
-        VirtualScrollModule
+        InfiniteScrollModule
     ],
     providers: [ToastService, InternetService, AuthService, { provide: MatDialogRef, useValue: {} },]
 })
