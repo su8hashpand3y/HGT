@@ -23,6 +23,7 @@ namespace HGT.Models
         public int Donation { get; set; }
         public bool SuperVideo { get; set; }
         public int SpamCount { get; set; }
+        public bool IsDeleted { get; set; }
         public bool SponseredVideo { get; set; }
 
         public string HGTUserID { get; set; }

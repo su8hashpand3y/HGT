@@ -18,6 +18,7 @@ namespace HGT.Models
         public int AllowedSpaceMB { get; set; }
         public long Credits { get; set; }
         public int ReportedSpamCount { get; set; }
+        public bool IsDeleted { get; set; }
         public bool SuperUser { get; set; }
         public List<VideoInfo> Videos {get; set;}
     }

@@ -46,7 +46,7 @@ namespace HGT.Controllers
 
                         if (!Directory.Exists(userDirectoryPath))
                             Directory.CreateDirectory(userDirectoryPath);
-
+                        // Very immportant to check format here other anyone will upload anything
 
                         var uniqueID = CreateUniqueVideoID();
                         var filePath = Path.Combine(userDirectoryPath, uniqueID + ext);
