@@ -11,6 +11,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using HGT.Helper;
+using Amazon.Extensions.NETCore.Setup;
 
 namespace HGT.Controllers
 {
@@ -30,6 +31,9 @@ namespace HGT.Controllers
 
         public IActionResult Donated()
         {
+            var options = Configuration.GetAWSOptions();
+            //Amazon.Extensions.NETCore.Setup.
+            //options.CreateServiceClient();
             return Ok();
         }
 

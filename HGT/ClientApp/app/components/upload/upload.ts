@@ -21,7 +21,7 @@ export class UploadComponent {
 
 
     upload(selectedFile: File) {
-
+        // Check whether greater than 500MB and reject if so if (selectedFile.size > )
         if (!this.authService.isAuthenticated()) {
             console.log("Should Open a popup now")
             this.authService.openLoginDialog().subscribe((x: any) => {

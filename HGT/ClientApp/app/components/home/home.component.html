@@ -1,22 +1,18 @@
 <img class="center" src="/Media/Ggo.jpg" />
-
-<div class="search-results"
+<video [src]="video1"></video>
+<div class="search-results container"
      infiniteScroll
      [infiniteScrollDistance]="2"
      [infiniteScrollThrottle]="50"
      (scrolled)="onScroll()">
-    <smallVideo *ngFor="let item of videos" [video]="item">
-    </smallVideo>
+    <div class="row">
+        <div *ngFor="let item of videos" class="col-6">
+            <smallVideo [video]="item">
+            </smallVideo>
+        </div>
+    </div>
 </div>
 
-<!--<virtual-scroll [items]="videos" (update)="scrollItems = $event"
-                (change)="onListChange($event)">-->
-
-    <!--<div  (document:scroll)="onScroll($event)">
-       
-        <div *ngIf="loading" class="loader">Loading...</div>
-    </div>-->
-<!--</virtual-scroll>-->
 
 
 

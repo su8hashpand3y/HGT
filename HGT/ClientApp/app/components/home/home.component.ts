@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { InternetService } from '../../InternetService';
 import { videoData } from '../../videoData';
-import { ChangeEvent } from 'angular2-virtual-scroll';
 import { HostListener } from '@angular/core';
 
 @Component({
@@ -10,7 +9,7 @@ import { HostListener } from '@angular/core';
     styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-    video1: string = "Media/SampleVideo_1280x720_1mb.mp4";
+    video1: string = "https://s3.ap-south-1.amazonaws.com/hgtdata/20186615457";
     videos: videoData[] = [];
 
     modalScrollDistance: Number = 2;
@@ -29,7 +28,7 @@ export class HomeComponent {
 
     onScroll() {
         console.log("scrolled!!");
-        this.fetchNextChunk(this.videos.length, 10);
+        // this.fetchNextChunk(this.videos.length, 10);
     }
 
 
@@ -56,11 +55,6 @@ export class HomeComponent {
 
     loading: boolean = false;
 
-    onListChange(event: ChangeEvent) {
-        if (event.end !== this.videos.length) return;
-        this.loading = true;
-        this.fetchNextChunk(this.videos.length, 10);
-    }
 
     fetchNextChunk(skip: number, limit: number){
         this.internet.get(`/video?skip=${skip}`).subscribe((x: any) => {

@@ -16,7 +16,6 @@ using HGT.Models;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using HGT.Helper;
-using NReco.VideoConverter;
 
 namespace HGT.Controllers
 {

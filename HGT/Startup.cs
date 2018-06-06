@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Amazon.S3;
 using HGT.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.EntityFrameworkCore;
@@ -31,7 +33,7 @@ namespace HGT
             services.AddDbContext<HGTDbContext>(options =>
              options.UseSqlServer(Configuration.GetConnectionString("HGTDB")));
 
-        services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
        .AddJwtBearer(options =>
        {
            options.TokenValidationParameters = new TokenValidationParameters
@@ -52,6 +54,15 @@ namespace HGT
             services.Configure<PayUMoneySettings>(Configuration.GetSection("PayUMoneySettings"));
 
             services.AddMvc();
+
+            services.AddDefaultAWSOptions(Configuration.GetAWSOptions());
+            services.AddAWSService<IAmazonS3>();
+
+            services.Configure<FormOptions>(options =>
+            {
+                options.MultipartBodyLengthLimit = 536870911;
+            });
+
             services.AddCors();
         }
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
