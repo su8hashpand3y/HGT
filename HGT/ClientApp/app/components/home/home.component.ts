@@ -3,6 +3,7 @@ import { InternetService } from '../../InternetService';
 import { videoData } from '../../videoData';
 import { HostListener } from '@angular/core';
 
+
 @Component({
     selector: 'home',
     templateUrl: './home.component.html',
@@ -25,7 +26,7 @@ export class HomeComponent {
         });
     }
 
-
+  
     onScroll() {
         console.log("scrolled!!");
         // this.fetchNextChunk(this.videos.length, 10);

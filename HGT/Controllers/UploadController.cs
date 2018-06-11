@@ -100,10 +100,19 @@ namespace HGT.Controllers
 
         private  async Task UploadFileAsync(IFormFile file,string keyName)
         {
+
+            //var imgbyts = Convert.FromBase64String(s);
+            //var path = Environment.CurrentDirectory + "/1.png";
+            //using (var t = new MemoryStream(imgbyts))
+            //{
+            //    FileStream fileStream = File.Create(path, (int)t.Length);
+            //    fileStream.WriteAsync(imgbyts, 0, (int)t.Length);
+            //}
+
             try
             {
                 var fileTransferUtility = new TransferUtility(this.s3Client);
-         
+           
                 // Option 4. Specify advanced settings.
                 var fileTransferUtilityRequest = new TransferUtilityUploadRequest
                 {

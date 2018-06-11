@@ -31,6 +31,8 @@ import { StripePaymentComponent } from './components/stripePayment/stripePayment
 
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
 
+import { ToastModule } from 'ng2-toastr';
+
 
 @NgModule({
     declarations: [
@@ -64,7 +66,8 @@ import { InfiniteScrollModule } from "ngx-infinite-scroll";
         BrowserAnimationsModule,
         MaterialDesignModule,
         MatSnackBarModule,
-        InfiniteScrollModule
+        InfiniteScrollModule,
+        ToastModule.forRoot(),
     ],
     providers: [ToastService, InternetService, AuthService, { provide: MatDialogRef, useValue: {} },]
 })

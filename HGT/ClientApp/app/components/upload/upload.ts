@@ -41,6 +41,7 @@ export class UploadComponent {
             });
         }
         else {
+            console.log("Submitting")
             let formData: FormData = new FormData();
             formData.append('file', selectedFile, selectedFile.name);
             formData.append('category', this.category);

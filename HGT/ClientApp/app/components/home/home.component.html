@@ -1,9 +1,10 @@
-<img class="center" src="/Media/Ggo.jpg" />
-<video [src]="video1"></video>
+<!--<simple-notifications></simple-notifications>-->
 <div class="search-results container"
      infiniteScroll
      [infiniteScrollDistance]="2"
      [infiniteScrollThrottle]="50"
+     [infiniteScrollDisabled]="isFullListDisplayed"
+     [scrollWindow]="false"
      (scrolled)="onScroll()">
     <div class="row">
         <div *ngFor="let item of videos" class="col-6">

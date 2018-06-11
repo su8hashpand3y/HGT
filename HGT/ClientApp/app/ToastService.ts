@@ -1,23 +1,29 @@
 ﻿
-import { Injectable } from '@angular/core';
-import { MatSnackBar } from '@angular/material';
+import { ViewContainerRef, Injectable } from '@angular/core';
+import { ToastsManager } from 'ng2-toastr';
+
 
 @Injectable()
 export class ToastService {
-    constructor(public snackBar: MatSnackBar) { }
+    constructor(private toastr: ToastsManager) { }
     success(msg:string) {
-        this.snackBar.open(msg);
+        this.toastr.success(msg);
     }
 
+   
     info(msg: string) {
-        this.snackBar.open(msg);
+        this.toastr.info(msg);
     }
 
     warning(msg: string) {
-        this.snackBar.open(msg);
+         this.toastr.warning(msg);
     }
 
     error(msg: string) {
-        this.snackBar.open(msg);
+        this.toastr.error(msg);
+    }
+
+    setVCR(vcr: ViewContainerRef) {
+        this.toastr.setRootViewContainerRef(vcr);
     }
 }
